@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import React, { useState, useRef } from "react"
+import { useRouter } from 'next/navigation'
 
 const handleSubmit=(e)=>{
   e.preventDefault();
@@ -24,6 +25,8 @@ export function ClassicTemplate() {
     priority:"medium",
     attachments:""
   }); 
+  const router = useRouter()
+ 
   const pref=useRef();
   const [formSuccess, setFormSuccess] = useState(false)
   const [formSuccessMessage, setFormSuccessMessage] = useState("")
@@ -65,14 +68,19 @@ export function ClassicTemplate() {
       },
     }).then((response) => response.json())
     .then((data) => {
-      setFormData({
-        name: "",
-        email: "",
-        message: ""
-      })
+     
+      // setFormSuccessMessage(data.submission_text)
+      try{
+        alert("Bug Successfully submitted")
+        setFormSuccess(true)
+      }catch(e){
+        console.log("something Went Wrong")
+      }
+      
+     
 
-      setFormSuccess(true)
-      setFormSuccessMessage(data.submission_text)
+    }).finally(()=>{
+      router.push('/tracker')
     })
   }
 

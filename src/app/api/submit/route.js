@@ -45,9 +45,22 @@ export async function GET (request){
      if(!dbConnected) return NextResponse.json({"message":"Something Went Wrong"}).status(400)  
 
     const data= await collection.find({}).toArray();
+    let response=[]
+    if(data.length >0){
+        response=data.map(bug=>{
+            
+            return {
+                id: bug?.bugId ?? "BUG-123",
+                title: bug?.title ?? "",
+                description: bug?.description ?? "",
+                status: bug?.status ?? "Open",
+            }
+
+        })
+    }
 
     return NextResponse.json({
-    "data":data
+    "data":response
     })
 }
 
@@ -58,6 +71,7 @@ export async function POST(request){
     const data=await request.json();
     data.bugId=generateBugId()
     const res=  await collection.insertMany([data])
+    
     console.log('res',res)
     console.log("data",data)
     return NextResponse.json(data);

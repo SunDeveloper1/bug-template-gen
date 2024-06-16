@@ -8,11 +8,24 @@ import Link from "next/link"
       <div className="space-y-8">
         <div className="text-center">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Templates</h1>
+          <div>
           <p
             className="max-w-[700px] mx-auto mt-4 text-gray-500 dark:text-gray-400 md:text-xl/relaxed">
             Browse our collection of pre-built templates to kickstart your next project.
           </p>
+          <Link
+            href="/tracker"
+            className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+            prefetch={false}
+          >
+            Tracker
+          </Link>
+          </div>
+          
+          
         </div>
+        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Link
             className="block bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl focus-within:scale-[1.02] focus-within:shadow-xl"
